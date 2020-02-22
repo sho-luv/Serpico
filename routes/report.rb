@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'pry'
 
 #####
 # Reporting Routes
@@ -1303,7 +1304,13 @@ get '/report/:id/generate' do
       hosts_xml = hosts_xml_raw.doc.root.to_xml
     end
   end
+
   # we bring all xml together
+
+  # To adjust the date format we change it manually here:
+  @report.assessment_start_date = Date.parse(@report.assessment_start_date).strftime('%m-%d-%Y')
+   
+  # Here we replace all variables in the template with variables from the database
   report_xml = "<report>#{@report.to_xml}#{udv}#{findings_xml}#{udo_xml}#{services_xml}#{hosts_xml}</report>"
   noko_report_xml = Nokogiri::XML(report_xml)
   #no use to go on with report generation if report XML is malformed
