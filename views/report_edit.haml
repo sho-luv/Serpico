@@ -133,14 +133,14 @@
                 %label.col-md-3{ :for => "assessment_start_date" }
                   Assessment Start Date
               %td{ :style => "width: 70%" }
-                %input#assessment_start_date{ :type => "date", :style => "width: 90%", :name => "assessment_start_date", :value => "#{Date.parse(@report.assessment_start_date).strftime('%-m/%d/%Y')}" }
+                %input#assessment_start_date{ :type => "date", :style => "width: 90%", :name => "assessment_start_date", :value => "#{@report.assessment_start_date}" }
+
             %tr
               %td{ :style => "width: 30%" }
                 %label.col-md-3{ :for => "assessment_end_date" }
                   Assessment End Date
               %td{ :style => "width: 70%" }
-                %input#assessment_end_date{ :type => "date", :style => "width: 90%", :name => "assessment_end_date", :value => "#{Date.parse(@report.assessment_end_date).strftime('%-m/%d/%Y')}" }
-
+                %input#assessment_end_date{ :type => "date", :style => "width: 90%", :name => "assessment_end_date", :value => "#{@report.assessment_end_date}" }
       %input{ :type => "hidden", :name => "id", :value => "#{@report.id}" }
 
       %br
