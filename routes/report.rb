@@ -1308,8 +1308,13 @@ get '/report/:id/generate' do
   # we bring all xml together
 
   # To adjust the date format we change it manually here:
-  @report.assessment_start_date = Date.parse(@report.assessment_start_date).strftime('%m-%d-%Y')
-   
+  date_format = config_options['date_format']
+  if !@report.assessment_start_date.empty?
+    @report.assessment_start_date = Date.parse(@report.assessment_start_date).strftime(date_format)
+  end
+  if !@report.assessment_end_date.empty?
+    @report.assessment_end_date = Date.parse(@report.assessment_end_date).strftime(date_format)
+  end
   # Here we replace all variables in the template with variables from the database
   report_xml = "<report>#{@report.to_xml}#{udv}#{findings_xml}#{udo_xml}#{services_xml}#{hosts_xml}</report>"
   noko_report_xml = Nokogiri::XML(report_xml)

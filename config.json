@@ -12,6 +12,7 @@
   "nessusmap": false,
   "burpmap": false,
   "vulnmap": false,
+  "date_format": "%m/%d/%Y",
   "finding_types": [
     "Web Application",
     "Business Logic",
